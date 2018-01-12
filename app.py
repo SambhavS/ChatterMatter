@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import pickle
 import json
 app = Flask(__name__)
+
 ######
 #Pickling helpers
 def serialize(obj, path):
@@ -16,6 +17,7 @@ def deserialize(path):
 		serialize({"messages":[]},path)
 		return deserialize(path)
 #####	
+
 @app.route('/')
 def hi_there():
 	return "Howdy! To go to a chatroom with a friend, please enter a '/' followed by a positive integer into the url after the .com; For example, why not go to <a href='https://pure-sea-80295.herokuapp.com/100'> https://pure-sea-80295.herokuapp.com/100</a>"
