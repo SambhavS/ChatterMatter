@@ -1,0 +1,37 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var html_message_update = function(data) {
+		var messages = document.getElementById("all_messages")
+		while (messages.firstChild) {
+    		messages.removeChild(messages.firstChild);
+		}
+		for(var i = 0; i<data.length; i++){
+			var mess = document.createElement("p");
+			var node = document.createTextNode(data[i]);
+			mess.appendChild(node);
+			messages.appendChild(mess);
+		};
+	};
+var print_messages = function(others_update) {
+	event.preventDefault();
+	var user_message = document.getElementById("msg").value;
+	var user_info = [user_message]
+	$.post('/int/{{number}}', {wordlist: user_info, others: [others_update]}, null, 'json').then(html_message_update);
+	document.getElementById("msg").value="";
+};
+//Continuously checks for updates
+setInterval(function() {
+  $.post('/int/{{number}}', {others: [true]}, null, 'json').then(html_message_update);
+}, 1000);
+</script>
+
+<body onload="print_messages(true)">
+<form id="formy" onsubmit="print_messages(false)">
+  Message: <input type="text" id="msg" value=""><br>
+  <input type="submit" value="Submit">
+</form>
+
+<div id="all_messages"></div>
+</body>
+</html>
