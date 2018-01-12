@@ -20,7 +20,7 @@ def deserialize(path):
 
 @app.route('/')
 def hi_there():
-	return "Howdy! To go to a chatroom with a friend, please enter a '/' followed by a positive integer into the url after the .com; For example, why not go to <a href='https://pure-sea-80295.herokuapp.com/100'> https://pure-sea-80295.herokuapp.com/100</a>"
+	return "Howdy! To go to a chatroom with a friend, please enter a '/' followed by a positive integer into the url after the .com; For example, why not go to <a href='https://chattermatter.herokuapp.com/100'> https://chattermatter.herokuapp.com/100</a>"
 
 @app.route('/<session>')
 def hello_world(session):
